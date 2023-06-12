@@ -22,6 +22,11 @@ class Item:
 
         Item.all.append(self)
 
+    def __add__(self, other):
+        if issubclass(self.__class__, other.__class__) or issubclass(other.__class__, self.__class__):
+            return self.quantity + other.quantity
+        return None
+
     def __repr__(self):
         return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
