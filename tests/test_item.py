@@ -1,6 +1,6 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
 import pytest
-from src.item import *
+from src.item import Item
 
 
 @pytest.fixture
