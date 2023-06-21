@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "electronics_shop_project"}]
 
 [tool.poetry.dependencies]
-python = "^3.10.6"
+python = "^3.8.10"
 pytest = "^7.3.2"
 
 
