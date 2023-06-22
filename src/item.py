@@ -2,7 +2,8 @@ import csv
 
 
 class InstantiateCSVError(Exception):
-    pass
+    def __init__(self, message=None):
+        super().__init__(message)
 
 
 class Item:
@@ -71,7 +72,7 @@ class Item:
                 reader = csv.DictReader(csvfile)
                 [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
                 if len(reader.fieldnames) < 3:
-                    raise Exception('InstantiateCSVError')
+                    raise InstantiateCSVError('Файл item.csv поврежден')
         except FileNotFoundError:
             print('Отсутствует файл item.csv')
         except (InstantiateCSVError, KeyError, TypeError):
