@@ -1,6 +1,10 @@
 import csv
 
 
+class InstantiateCSVError(Exception):
+    pass
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -66,11 +70,11 @@ class Item:
             with open('../src/items.csv', 'r', encoding='UTF-8') as csvfile:
                 reader = csv.DictReader(csvfile)
                 [cls((row['name']), float(row['price']), int(row['quantity'])) for row in reader]
-                if reader['name'] or reader['price'] or reader['quantity'] is None:
+                if len(reader.fieldnames) < 3:
                     raise Exception('InstantiateCSVError')
         except FileNotFoundError:
             print('Отсутствует файл item.csv')
-        except InstantiateCSVError:
+        except (InstantiateCSVError, KeyError, TypeError):
             print('Файл item.csv поврежден')
 
     @staticmethod
